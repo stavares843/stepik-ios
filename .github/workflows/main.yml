@@ -1,19 +1,15 @@
-name: Dependency Graph
+name: Game
 
-on: [push]
+on:
+  issue_comment:
+    types: [created]
 
 jobs:
-  test:
+  game:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '12'
-      - run: npm install -g depviz
-      - run: |
-          sudo depviz --file=Podfile --output=dependencies.png
-      - uses: actions/upload-artifact@v2
-        with:
-          name: dependencies
-          path: dependencies.png
+      - name: Display game
+        if: contains(toJson(github.event.comment.body), '/game')
+        run: |
+          open game.html
