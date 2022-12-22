@@ -11,6 +11,7 @@ jobs:
         with:
           node-version: '12'
       - run: npm install -g depviz
+      - run: which depviz
       - run: |
           depviz --file=Podfile --output=dependencies.png
       - uses: actions/upload-artifact@v2
