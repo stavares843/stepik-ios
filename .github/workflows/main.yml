@@ -1,0 +1,15 @@
+name: Game
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  game:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Display game
+        if: contains(toJson(github.event.comment.body), '/game')
+        run: |
+          open game.html
