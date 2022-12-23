@@ -9,10 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set browser
-        env:
-          BROWSER: firefox
       - name: Check for command
         if: contains(toJson(github.event.comment.body), '/game')
         run: |
-          open game.html
+          xdg-open game.html
