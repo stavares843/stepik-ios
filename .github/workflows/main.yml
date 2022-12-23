@@ -1,15 +1,20 @@
-name: Game
+name: Play game
 
 on:
   issue_comment:
     types: [created]
 
 jobs:
-  game:
+  play-game:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
-      - name: Display game
+      - name: Set browser
+        env:
+          BROWSER: firefox
+      - name: Install browser
+        run: sudo apt-get update && sudo apt-get install -y firefox
+      - name: Check for command
         if: contains(toJson(github.event.comment.body), '/game')
         run: |
           open game.html
