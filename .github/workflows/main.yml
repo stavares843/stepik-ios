@@ -11,6 +11,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Display game
         if: contains(toJson(github.event.comment.body), '/game')
+        run: xdg-settings set default-web-browser chromium-browser.desktop
+      - name: game
         run: |
-          xdg-settings set default-web-browser chromium-browser.desktop
           open game.html
