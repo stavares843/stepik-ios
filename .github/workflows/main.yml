@@ -1,15 +1,15 @@
-name: Play game
+name: Game
 
 on:
   issue_comment:
     types: [created]
 
 jobs:
-  play-game:
+  game:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check for command
+      - uses: actions/checkout@v2
+      - name: Display game
         if: contains(toJson(github.event.comment.body), '/game')
         run: |
-          xdg-open game.html
+          open game.html
